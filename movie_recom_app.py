@@ -54,7 +54,7 @@ def generate_recommendations(selected_movies, genre_filter, avoid_nudity, data):
         filtered_data['similarity'] = mean_similarity
 
         # Sort by similarity to get recommendations
-        recommendations = filtered_data.sort_values(by='similarity', ascending=False).head(20)
+        recommendations = filtered_data.sort_values(by='similarity', ascending=False).head(100)
     else:
         # If movies are selected, proceed as normal
         existing_movies = selected_movies  # Use selected movies directly
@@ -82,7 +82,7 @@ def generate_recommendations(selected_movies, genre_filter, avoid_nudity, data):
         filtered_data['similarity'] = mean_similarity
 
         # Sort by similarity to get recommendations
-        recommendations = filtered_data.sort_values(by='similarity', ascending=False).head(20)
+        recommendations = filtered_data.sort_values(by='similarity', ascending=False).head(100)
 
     # Apply the nudity filter to the recommendations if requested
     if avoid_nudity:
@@ -91,7 +91,7 @@ def generate_recommendations(selected_movies, genre_filter, avoid_nudity, data):
     # Add Sexual Nudity Category to the recommendations DataFrame
     recommendations['Sexual_Nudity_Category'] = recommendations['NLP_nudity_score'].apply(categorize_nudity_score)
 
-    return recommendations.head(20)  # Return top 20 recommendations
+    return recommendations.head(100)  # Return top 100 recommendations
 
 
 # Streamlit UI
@@ -103,7 +103,7 @@ def main():
     data = load_data()
 
     # Step 1: Select 3 movies you like from a diverse and popular list (Optional)
-    st.write("### Step 1: Select up to 3 movies you like to get recommendations (Optional)")
+    st.write("### Step 1: Select up to 3 movies you like, to get our recommendations (Optional)")
 
     # List of movies
     options = ['Avatar', 'The Dark Knight', 'Inception', 'Interstellar', 'The Lord of the Rings: The Return of the King', 
