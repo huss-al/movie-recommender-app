@@ -86,7 +86,7 @@ def main():
     data = load_data()
 
     # Step 1: Select 3 movies you like from a diverse and popular list
-    st.write("### Step 1: Select 1 movie you like to get recommendations")
+    st.write("### Step 1: Select 3 movies you like to get recommendations")
 
     # List of movies
     options = ['Avatar', 'The Dark Knight', 'Inception', 'Interstellar', 'The Lord of the Rings: The Return of the King', 
