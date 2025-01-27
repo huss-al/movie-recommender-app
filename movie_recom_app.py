@@ -101,8 +101,6 @@ def main():
     if len(selected_movies) > 3:
         st.warning("You can select up to 3 movies only. Extra selections will be ignored.")
     selected_movies = selected_movies[:3]
-    # Display selected movies
-    st.markdown(f"Your selected movies: {selected_movies}.")
 
     # Step 2: Select genre
     st.write("### Step 2: Select your preferred genre")
