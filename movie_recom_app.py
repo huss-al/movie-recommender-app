@@ -96,7 +96,7 @@ def generate_recommendations(selected_movies, genre_filter, avoid_nudity, data):
 
 # Streamlit UI
 def main():
-    st.title("Movie Recommender System")
+    st.title("Movie Recommender App")
     st.subheader("Find your next favourite movie!")
 
     # Load data
