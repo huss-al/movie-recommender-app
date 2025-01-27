@@ -38,11 +38,8 @@ def generate_recommendations(selected_movies, genre_filter, avoid_nudity, data):
     if genre_filter:
         filtered_data = filtered_data[filtered_data['genres'].str.contains(genre_filter, case=False, na=False)]
 
-    # Ensure selected movies are in the dataset
-    existing_movies = [movie for movie in selected_movies if movie.lower().strip() in filtered_data['normalized_title'].values]
-    if len(existing_movies) == 0:
-        st.warning("None of the selected movies were found in the database. Please select valid movies.")
-        return pd.DataFrame()  # Return empty DataFrame if no valid movies selected
+    # Just normalize them and proceed
+    existing_movies = selected_movies  # No filtering, we just use what was selected directly
 
     # NLP-based recommendations using TF-IDF
     tfidf = TfidfVectorizer(stop_words="english")
@@ -57,7 +54,7 @@ def generate_recommendations(selected_movies, genre_filter, avoid_nudity, data):
     selected_indices = filtered_data[filtered_data['normalized_title'].isin([movie.lower().strip() for movie in existing_movies])].index
     selected_vectors = tfidf_matrix[selected_indices]
     if selected_vectors.shape[0] == 0:
-        st.warning("No valid vectors for the selected movies.")
+        st.warning("No valid recommendation for the selected genre. Please select another genre")
         return pd.DataFrame()  # Return empty DataFrame if no valid vectors
     
     similarity_scores = cosine_similarity(selected_vectors, tfidf_matrix)
