@@ -136,7 +136,7 @@ def main():
 
 
     # Display your logo using the URL
-    logo_url = "https://noodle.digitalfutures.com/studentuploads/innocine-high-resolution-logo-transparent.png"
+    logo_url = "https://noodle.digitalfutures.com/studentuploads/innocine-new-high-resolution-logo-transparent.png"
     st.image(logo_url, width=300)
 
 
