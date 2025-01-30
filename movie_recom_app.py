@@ -145,7 +145,7 @@ def main():
 
 # Step 1: Select Movies Section
     # Step 1: Select 3 movies you like from a diverse and popular list (Optional)
-    st.write("#### Step 1: Select up to 3 movies you like, to get our recommendations (Optional)")
+    st.write("#### Select up to 3 movies you like, to get our recommendations (Optional)")
 
     # List of movies
     options = ['Avatar', 'The Dark Knight', 'Inception', 'Interstellar', 'The Lord of the Rings: The Return of the King', 
@@ -160,13 +160,13 @@ def main():
     selected_movies = selected_movies[:3]
 
     # Step 2: Select genre
-    st.write("#### Step 2: Select your preferred genre")
+    st.write("#### Select your preferred genre")
     all_genres = set(", ".join(data['genres'].dropna().unique()).split(", "))
     genre_filter = st.selectbox("Genre:", ["All"] + list(all_genres))
     genre_filter = None if genre_filter == "All" else genre_filter
 
     # Step 3: Minimal Sexual & Nudity Scenes
-    st.write("#### Step 3: Filter for minimal/no sexual & nudity scenes")
+    st.write("#### Filter for minimal/no sexual & nudity scenes")
     avoid_nudity = st.checkbox("Show only movies with minimal/no sexual & nudity scenes")
 
     # Generate recommendations
