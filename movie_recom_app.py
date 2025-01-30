@@ -96,34 +96,77 @@ def generate_recommendations(selected_movies, genre_filter, avoid_nudity, data):
 
 # Streamlit UI
 def main():
-    st.title("Movie Recommender App")
-    st.subheader("Find your next favourite movie!")
+
+# Customised Title with CSS
+    st.markdown(
+        """
+    <style>
+        /* Set the background color of the app */
+        .stApp {
+            background-color: #EBEBEB; /* Dark Grey */
+            color: black;
+        }
+
+        /* Make sure text stays readable */
+        h1, h2, h3, h4, h5, h6, label {
+            color: #FFFAFB;
+        }
+
+        p {
+            color: black;
+        }
+
+        .recommendation-title {
+            font-size: 44px;
+            font-weight: bold;
+            color: #4A90E2;  /* Optional: Change colour */
+        }
+        .recommendation-info {
+            font-size: 28px;
+            color: white;  /* Optional: Change colour */
+        }
+
+    </style>
+        """,
+        unsafe_allow_html=True,
+    )
+
+    # Wrap your app content inside the container div
+    st.markdown('<div class="app-container">', unsafe_allow_html=True)
+
+
+    # Display your logo using the URL
+    logo_url = "https://noodle.digitalfutures.com/studentuploads/innocine-high-resolution-logo-transparent.png"
+    st.image(logo_url, width=300)
+
 
     # Load data
     data = load_data()
 
+# Step 1: Select Movies Section
     # Step 1: Select 3 movies you like from a diverse and popular list (Optional)
-    st.write("### Step 1: Select up to 3 movies you like, to get our recommendations (Optional)")
+    st.write("#### Step 1: Select up to 3 movies you like, to get our recommendations (Optional)")
 
     # List of movies
     options = ['Avatar', 'The Dark Knight', 'Inception', 'Interstellar', 'The Lord of the Rings: The Return of the King', 
                'Fight Club', 'Harry Potter and the Goblet of Fire', 'John Wick', 'Shrek', 'Monster']
 
+
     # Use st.pills for selecting multiple movies
-    selected_movies = st.pills("Select Movies you like", options, selection_mode="multi")
+    selected_movies = st.pills("", options, selection_mode="multi")
     # Limit to 3 selections if more than 3 are selected
     if len(selected_movies) > 3:
-        st.warning("You can select up to 3 movies only. Extra selections will be ignored.")
+        st.warning("You can select up to 3 movies only. Extra selections will be ignored.",  icon="⚠️")
     selected_movies = selected_movies[:3]
 
     # Step 2: Select genre
-    st.write("### Step 2: Select your preferred genre")
+    st.write("#### Step 2: Select your preferred genre")
     all_genres = set(", ".join(data['genres'].dropna().unique()).split(", "))
     genre_filter = st.selectbox("Genre:", ["All"] + list(all_genres))
     genre_filter = None if genre_filter == "All" else genre_filter
 
     # Step 3: Minimal Sexual & Nudity Scenes
-    st.write("### Step 3: Filter for minimal/no sexual & nudity scenes")
+    st.write("#### Step 3: Filter for minimal/no sexual & nudity scenes")
     avoid_nudity = st.checkbox("Show only movies with minimal/no sexual & nudity scenes")
 
     # Generate recommendations
@@ -135,15 +178,20 @@ def main():
         else:
             st.write("### Recommendations:")
             for _, row in recommendations.iterrows():
-                st.write(f"**{row['title']} ({row['year']})**")
-                st.write(f"Runtime: {row['runtime']} minutes | Language: {row['original_language']}")
-                st.write(f"Genres: {row['genres']}")
-                st.write(f"Overview: {row['overview']}")
-                st.write(f"Directors: {row['directors']} | Cast: {row['cast']}")
-                st.write(f"**Sexual Nudity Comments:** {row['sex_nudity_summary']}")
-                st.write(f"**Sexual Nudity Category:** {row['Sexual_Nudity_Category']}")
+                st.write(f"#### **{row['title']} ({row['year']})**")
+                st.write(f"##### Runtime: {row['runtime']} minutes | Language: {row['original_language']}")
+                st.write(f"##### Genres: {row['genres']}")
+                st.write(f"##### Overview: {row['overview']}")
+                st.write(f"##### Directors: {row['directors']} | Cast: {row['cast']}")
+                st.write(f"##### **Sexual Nudity Comments:** {row['sex_nudity_summary']}")
+                st.write(f"##### **Sexual Nudity Category:** {row['Sexual_Nudity_Category']}")
                 st.write("---")
 
 
+
+    # Close the container div at the end of your app
+    st.markdown('</div>', unsafe_allow_html=True)
+
 if __name__ == "__main__":
     main()
+
