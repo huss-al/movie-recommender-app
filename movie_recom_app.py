@@ -178,14 +178,17 @@ def main():
         else:
             st.write("### Recommendations:")
             for _, row in recommendations.iterrows():
-                st.write(f"#### **{row['title']} ({row['year']})**")
-                st.write(f"##### Runtime: {row['runtime']} minutes | Language: {row['original_language']}")
-                st.write(f"##### Genres: {row['genres']}")
-                st.write(f"##### Overview: {row['overview']}")
-                st.write(f"##### Directors: {row['directors']} | Cast: {row['cast']}")
-                st.write(f"##### **Sexual Nudity Comments:** {row['sex_nudity_summary']}")
-                st.write(f"##### **Sexual Nudity Category:** {row['Sexual_Nudity_Category']}")
+                st.write(f"### **{row['title']} ({row['year']})**")
+                st.markdown(f"#### **Runtime:** <span style='font-size: 18px;'>{row['runtime']} minutes | Language: {row['original_language']}</span>", unsafe_allow_html=True)
+                st.markdown(f"#### **Genres:** <span style='font-size: 18px;'>{row['genres']}</span>", unsafe_allow_html=True)
+                st.markdown(f"#### **Overview:** <span style='font-size: 18px;'>{row['overview']}</span>", unsafe_allow_html=True)
+                st.markdown(f"#### **Directors:** <span style='font-size: 18px;'>{row['directors']}</span>", unsafe_allow_html=True)
+                st.markdown(f"#### **Cast:** <span style='font-size: 18px;'>{row['cast']}</span>", unsafe_allow_html=True)
+                st.markdown(f"#### **Sexual Nudity Comments:** <span style='font-size: 18px;'>{row['sex_nudity_summary']}</span>", unsafe_allow_html=True)
+                st.markdown(f"#### **Sexual Nudity Category:** <span style='font-size: 18px;'>{row['Sexual_Nudity_Category']}</span>", unsafe_allow_html=True)
                 st.write("---")
+
+
 
 
 
