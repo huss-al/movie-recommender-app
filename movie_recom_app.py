@@ -184,7 +184,7 @@ def main():
                 st.markdown(f"#### **Overview:** <span style='font-size: 18px;'>{row['overview']}</span>", unsafe_allow_html=True)
                 st.markdown(f"#### **Directors:** <span style='font-size: 18px;'>{row['directors']}</span>", unsafe_allow_html=True)
                 st.markdown(f"#### **Cast:** <span style='font-size: 18px;'>{row['cast']}</span>", unsafe_allow_html=True)
-                st.markdown(f"#### **Sexual Nudity Comments:** <span style='font-size: 18px;'>{row['sex_nudity_summary']}</span>", unsafe_allow_html=True)
+                st.markdown(f"#### **Sexual Nudity Comments:** <span style='font-size: 18px;'>{row['sex_nudity_summary_cleaned']}</span>", unsafe_allow_html=True)
                 st.markdown(f"#### **Sexual Nudity Category:** <span style='font-size: 18px;'>{row['Sexual_Nudity_Category']}</span>", unsafe_allow_html=True)
                 st.write("---")
 
