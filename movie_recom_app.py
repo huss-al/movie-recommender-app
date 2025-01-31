@@ -126,6 +126,26 @@ def main():
             color: white;  /* Optional: Change colour */
         }
 
+        .pill {
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 16px;
+        }
+
+        /* Default light mode styling */
+        .pill {
+            background-color: #f0f0f0;
+            color: #333;
+        }
+
+        /* Dark mode styling */
+        @media (prefers-color-scheme: dark) {
+            .pill {
+            background-color: #333;
+            color: #f0f0f0;
+            }
+        }
+
     </style>
         """,
         unsafe_allow_html=True,
